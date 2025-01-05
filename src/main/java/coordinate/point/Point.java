@@ -24,16 +24,16 @@ public class Point {
         return new Point(x, y);
     }
 
-    public boolean isMark(int x, int y) {
+    public boolean isSamePosition(int x, int y) {
         return this.x == x && this.y == y;
     }
 
-    public int getX() {
-        return x;
+    public int subtractionByX(Point anotherPoint) {
+        return x - anotherPoint.x;
     }
 
-    public int getY() {
-        return y;
+    public int subtractionByY(Point anotherPoint) {
+        return y - anotherPoint.y;
     }
 
     private boolean validateInputValue(int point) {

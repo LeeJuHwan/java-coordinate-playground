@@ -1,6 +1,7 @@
 package coordinate.point;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import coordinate.exception.CoordinateException;
 import org.junit.jupiter.api.DisplayName;
@@ -11,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class PointTest {
 
     @ParameterizedTest
-    @DisplayName("[정상] 좌표는 0 ~ 24까지의 값만 입력할 수 있다")
+    @DisplayName("좌표는 0 ~ 24까지의 값만 입력할 수 있다")
     @CsvSource({"0,24"})
     void testPointValidateByMinMaxValues(int x, int y) {
         // Given
@@ -25,7 +26,7 @@ public class PointTest {
     }
 
     @ParameterizedTest
-    @DisplayName("[예외] 좌표는 0 ~ 24까지의 값만 입력할 수 있다")
+    @DisplayName("입력한 좌표가 0 ~ 24 범위를 벗어나면 예외를 반환한다")
     @CsvSource({"-1,24", "0,25"})
     void testPointValidateByMinMaxValuesException(int x, int y) {
         assertThatThrownBy(() -> {
@@ -38,28 +39,56 @@ public class PointTest {
     }
 
     @Test
-    @DisplayName("[정상] 좌표값이 같을 때 마크가 활성화 된다.")
+    @DisplayName("좌표값이 같을 때 마크 표시 상태값이 활성화된다.")
     void testPointMarkIsTrue() {
         // Given
         Point point = Point.of(10, 10);
 
         // When
-        boolean markIsEnabled = point.isMark(10, 10);
+        boolean markIsEnabled = point.isSamePosition(10, 10);
 
         // Then
         assertThat(markIsEnabled).isTrue();
     }
 
     @Test
-    @DisplayName("[실패] 좌표값이 같을 때 마크가 활성화 된다.")
+    @DisplayName("좌표값이 같지 않으면 마크 표시 상태값이 활성화 되지 않는다.")
     void testPointMarkIsFalse() {
         // Given
         Point point = Point.of(10, 10);
 
         // When
-        boolean markIsEnabled = point.isMark(10, 11);
+        boolean markIsEnabled = point.isSamePosition(10, 11);
 
         // Then
         assertThat(markIsEnabled).isFalse();
+    }
+
+    @Test
+    @DisplayName("두 점에서 X좌표 끼리 뺄셈 연산을 한다.")
+    void testSubtractByX() {
+        // Given
+        Point firstPoint = Point.of(10, 10);
+        Point secondPoint = Point.of(20, 20);
+
+        // When
+        int result = firstPoint.subtractionByX(secondPoint);
+
+        // Then
+        assertThat(result).isEqualTo(-10);
+    }
+
+    @Test
+    @DisplayName("두 점에서 Y좌표 끼리 뺄셈 연산을 한다.")
+    void testSubtractByY() {
+        // Given
+        Point firstPoint = Point.of(10, 14);
+        Point secondPoint = Point.of(20, 20);
+
+        // When
+        int result = firstPoint.subtractionByY(secondPoint);
+
+        // Then
+        assertThat(result).isEqualTo(-6);
     }
 }
