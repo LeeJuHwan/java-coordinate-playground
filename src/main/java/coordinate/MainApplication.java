@@ -8,14 +8,9 @@ import coordinate.plot.LinePlot;
 public class MainApplication {
 
     public static void main(String[] args) {
-        ConsoleInputHandler inputHandler = new ConsoleInputHandler();
-        ConsoleOutputHandler outputHandler = new ConsoleOutputHandler();
-
-        String figureSize = inputHandler.inputFromUser();
-
-        LinePlot linePlot = LinePlot.from(figureSize);
-        Graph graph = Graph.from(linePlot);
-        outputHandler.printGraph(graph.draw());
-
+        FigureSize figureSize = inputHandler.getFigureSize();
+        Figure figure = FigureFactory.create(figureSize);
+        Graph graph = Graph.from(figure);
+        outputHandler.printGraph(graph);
     }
 }
