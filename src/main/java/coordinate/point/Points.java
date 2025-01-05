@@ -1,27 +1,32 @@
 package coordinate.point;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PointList {
+public class Points {
 
     private final List<Point> points;
 
-    private PointList(List<Point> points) {
+    private Points(List<Point> points) {
         this.points = points;
     }
 
-    public static PointList from(List<Point> points) {
-        return new PointList(points);
+    public static Points from(List<Point> points) {
+        return new Points(points);
     }
 
-    public boolean isMark(int x, int y) {
+    public boolean isMarkedAt(int x, int y) {
         return points.stream()
-                .anyMatch(point -> point.isMark(x, y));
+                .anyMatch(point -> point.isSamePosition(x, y));
+    }
+
+    public int size() {
+        return points.size();
     }
 
     public List<Point> getPoints() {
-        return points;
+        return new ArrayList<>(points);
     }
 
     @Override
@@ -32,7 +37,7 @@ public class PointList {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PointList pointList = (PointList) o;
+        Points pointList = (Points) o;
         return Objects.equals(points, pointList.points);
     }
 
