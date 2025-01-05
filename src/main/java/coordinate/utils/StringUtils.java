@@ -18,7 +18,7 @@ public class StringUtils {
         return List.of(string.split("-"));
     }
 
-    public static List<Integer> extractFromStringByRegex(String string) {
+    public static List<Integer> extractFromStringToIntegerByRegex(String string) {
         String regex = "\\((\\d+),(\\d+)\\)";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(string);
@@ -33,11 +33,7 @@ public class StringUtils {
     }
 
     private static int stringMatcherToInt(Matcher matcher, int groupIndex) {
-        try {
-            return Integer.parseInt(matcher.group(groupIndex));
-        } catch (NumberFormatException e) {
-            throw new CoordinateException(ErrorMessage.numberFormatFailed);
-        }
+        return Integer.parseInt(matcher.group(groupIndex));
     }
 
 }
