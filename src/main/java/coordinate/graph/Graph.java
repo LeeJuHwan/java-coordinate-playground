@@ -1,8 +1,6 @@
 package coordinate.graph;
 
-import coordinate.messages.SystemMessage;
-import coordinate.plot.LinePlot;
-import coordinate.point.PointList;
+import coordinate.figure.Figure;
 import java.util.stream.IntStream;
 
 public class Graph {
@@ -18,14 +16,14 @@ public class Graph {
     public static final String SPACE = " ";
 
     private final StringBuilder graphBuilder = new StringBuilder();
-    private final LinePlot linePlot;
+    private final Figure figure;
 
-    private Graph(LinePlot linePlot) {
-        this.linePlot = linePlot;
+    private Graph(Figure figure) {
+        this.figure = figure;
     }
 
-    public static Graph from(LinePlot linePlot) {
-        return new Graph(linePlot);
+    public static Graph from(Figure figure) {
+        return new Graph(figure);
     }
 
     public StringBuilder draw() {
@@ -37,14 +35,13 @@ public class Graph {
 
     private void distanceBetweenPointsResult() {
         graphBuilder.append(NEW_LINE);
-        graphBuilder.append(SystemMessage.distancePoints);
-        graphBuilder.append(linePlot.distanceBetweenPoints());
+        graphBuilder.append(figure.toString());
     }
 
     private void verticalDrawAndPoint() {
         for (int y = MAX_VALUE; y > MIN_VALUE; y--) {
             verticalDrawNumberWithPipe(y);
-            drawPoint(y, linePlot.getFigureSize());
+            drawPoint(y);
             graphBuilder.append(NEW_LINE);
         }
     }
@@ -58,15 +55,15 @@ public class Graph {
         graphBuilder.append(String.format("%4s", PIPE));
     }
 
-    private void drawPoint(int y, PointList points) {
+    private void drawPoint(int y) {
         for (int x = 0; x < MAX_INT_RANGE; x++) {
-            markAdd(x, y, points);
+            markAdd(x, y, figure);
         }
     }
 
-    private void markAdd(int x, int y, PointList points) {
-        if (points.isMark(x, y)) {
-            graphBuilder.append(String.format("%s", POINT_MARK));
+    private void markAdd(int x, int y, Figure figure) {
+        if (figure.isMark(x, y)) {
+            graphBuilder.append(POINT_MARK);
             return;
         }
 
@@ -87,8 +84,8 @@ public class Graph {
 
     private void horizontalLineDraw() {
         graphBuilder.append(String.format("%4s", PLUS_MARK));
-        IntStream.range(MIN_VALUE, MAX_VALUE).forEach(i -> graphBuilder.append(String.format("%2s", DOUBLE_HYPHEN)));
-        graphBuilder.append("\n");
+        IntStream.range(MIN_VALUE, MAX_VALUE).forEach(i -> graphBuilder.append(DOUBLE_HYPHEN));
+        graphBuilder.append(NEW_LINE);
     }
 
     private boolean isEvenNumber(int value) {
