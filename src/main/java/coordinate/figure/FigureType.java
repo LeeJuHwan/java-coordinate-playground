@@ -17,6 +17,12 @@ public enum FigureType {
         public Figure createFigure(Points points) {
             return Rectangle.from(points);
         }
+    },
+    TRIANGLE(3) {
+        @Override
+        public Figure createFigure(Points points) {
+            return Triangle.from(points);
+        }
     };
 
     private final int pointsSize;
