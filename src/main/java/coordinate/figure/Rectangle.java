@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Rectangle implements Figure {
 
-    Points points;
+    private final Points points;
 
     private Rectangle(Points points) {
         this.points = points;
