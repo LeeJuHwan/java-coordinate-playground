@@ -18,7 +18,7 @@ public class FigureTypeTest {
         FigureSize figureSize = FigureSize.from("(10,10)-(14,15)");
 
         // When
-        Figure line = FigureType.get(figureSize);
+        Figure line = FigureType.create(figureSize);
 
         // Then
         assertThat(line).isInstanceOf(Line.class);
@@ -31,7 +31,7 @@ public class FigureTypeTest {
         FigureSize figureSize = FigureSize.from("(10,10)-(22,10)-(22,18)-(10,18)");
 
         // When
-        Figure rectangle = FigureType.get(figureSize);
+        Figure rectangle = FigureType.create(figureSize);
 
         // Then
         assertThat(rectangle).isInstanceOf(Rectangle.class);
@@ -46,7 +46,7 @@ public class FigureTypeTest {
 
         assertThatThrownBy(() -> {
             // When
-            FigureType.get(figureSize);
+            FigureType.create(figureSize);
         })
                 // Then
                 .hasMessage("해당 좌표로 도형을 생성 할 수 없습니다.")

@@ -27,7 +27,7 @@ public enum FigureType {
 
     public abstract Figure createFigure(Points points);
 
-    public static Figure get(FigureSize figureSize) {
+    public static Figure create(FigureSize figureSize) {
         Points points = figureSize.toPoints();
 
         return Arrays.stream(values())
