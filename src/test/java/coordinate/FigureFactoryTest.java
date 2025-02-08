@@ -47,6 +47,42 @@ public class FigureFactoryTest {
     }
 
     @Test
+    public void lineCreate() {
+        List<Point> points = Arrays.asList(
+                Point.of(1, 2),
+                Point.of(2, 3));
+
+        Figure figure = new FigureFactory().create(points);
+        assertThat(figure).isInstanceOfAny(Line.class);
+        assertThat(figure.getName()).isEqualTo("선");
+    }
+
+    @Test
+    public void triangleCreate() {
+        List<Point> points = Arrays.asList(
+                Point.of(1, 1),
+                Point.of(4, 1),
+                Point.of(1, 4));
+
+        Figure figure = new FigureFactory().create(points);
+        assertThat(figure).isInstanceOfAny(Triangle.class);
+        assertThat(figure.getName()).isEqualTo("삼각형");
+    }
+
+    @Test
+    public void rectangleCreate() {
+        List<Point> points = Arrays.asList(
+                Point.of(1, 1),
+                Point.of(4, 1),
+                Point.of(1, 4),
+                Point.of(4, 4));
+
+        Figure figure = new FigureFactory().create(points);
+        assertThat(figure).isInstanceOfAny(Rectangle.class);
+        assertThat(figure.getName()).isEqualTo("사각형");
+    }
+
+    @Test
     public void unkown() {
         List<Point> points = Arrays.asList(
                 Point.of(1, 1),
