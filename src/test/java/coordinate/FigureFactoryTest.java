@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class FigureFactoryTest {
+
     @Test
     public void line() {
         List<Point> points = Arrays.asList(
@@ -42,5 +44,21 @@ public class FigureFactoryTest {
         Figure figure = FigureFactory.getInstance(points);
         assertThat(figure).isInstanceOfAny(Rectangle.class);
         assertThat(figure.getName()).isEqualTo("사각형");
+    }
+
+    @Test
+    public void unkown() {
+        List<Point> points = Arrays.asList(
+                Point.of(1, 1),
+                Point.of(4, 1),
+                Point.of(1, 4),
+                Point.of(4, 4),
+                Point.of(5, 5));
+
+        assertThatThrownBy(() -> {
+            new FigureFactory().create(points);
+        })
+                .hasMessage("유효하지 않은 도형입니다.")
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
