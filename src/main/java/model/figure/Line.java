@@ -5,7 +5,7 @@ import model.point.Points;
 
 public class Line implements Figure {
 
-    public static final int POINTS_SIZE = 2;
+    private static final int POINTS_SIZE = 2;
     private final Points points;
 
     public Line(Points points) {

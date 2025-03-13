@@ -6,7 +6,7 @@ import model.point.Points;
 
 public class Rectangle implements Figure {
 
-    public static final int POINTS_SIZE = 4;
+    private static final int POINTS_SIZE = 4;
     private final Points points;
 
     public Rectangle(Points points) {
