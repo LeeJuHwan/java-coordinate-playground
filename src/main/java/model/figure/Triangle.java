@@ -21,6 +21,7 @@ public class Triangle implements Figure {
         return new Triangle(points);
     }
 
+    @Override
     public double calculate() {
         List<Double> pointDistances = points.calculateDistance();
 

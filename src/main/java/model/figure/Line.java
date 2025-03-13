@@ -23,6 +23,7 @@ public class Line implements Figure {
         return new Line(points);
     }
 
+    @Override
     public double calculate() {
         return points.calculateDistance().stream()
                 .mapToDouble(Double::doubleValue)

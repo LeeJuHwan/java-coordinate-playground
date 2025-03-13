@@ -20,7 +20,8 @@ public class Rectangle implements Figure {
         return new Rectangle(points);
     }
 
-    public double calcuate() {
+    @Override
+    public double calculate() {
         Point point1 = points.at(0);
         Point point2 = points.at(2);
 
