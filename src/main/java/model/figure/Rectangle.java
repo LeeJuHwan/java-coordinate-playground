@@ -37,7 +37,7 @@ public class Rectangle implements Figure {
 
     @Override
     public String toString() {
-        return String.format("사각형 넓이는 %.0f", calcuate());
+        return String.format("사각형 넓이는 %.0f", calculate());
     }
 
     @Override

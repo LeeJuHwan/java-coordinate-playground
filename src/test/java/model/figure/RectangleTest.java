@@ -35,7 +35,7 @@ public class RectangleTest {
         Point coordinate4 = Coordinate.of(10, 18).toPoint();
 
         assertThat(Rectangle.from(Points.from(List.of(coordinate1, coordinate2, coordinate3, coordinate4)))
-                .calcuate()).isEqualTo(96.0);
+                .calculate()).isEqualTo(96.0);
     }
 
     @Test
